@@ -20,6 +20,7 @@ function GlobalStyles() {
           margin: auto;
           height: 100%;
           max-width: 400px;
+          background: linear-gradient(${theme.colors.secondary} 30%,#B9DFD5 100%);
         }
       }
       `}
