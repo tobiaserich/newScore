@@ -22,8 +22,8 @@ export default function Main() {
         const description =
           field.name === "O2 Gabe?"
             ? {
-                left: { first: "ja", second: "" },
-                right: { first: "nein", second: "" },
+                left: { first: "nein", second: "" },
+                right: { first: "ja", second: "" },
               }
             : field.name === "Vigilanz"
             ? {
