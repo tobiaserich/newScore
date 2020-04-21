@@ -99,14 +99,15 @@ export default function InputCheckboxSwitch({
 
   function handleKeyPress(event) {
     switch (event.key) {
-      case " ":
-        setSwitchStatus(!switchStatus);
+      case "":
         break;
       case "ArrowRight":
         setSwitchStatus(false);
+        handleChange(false);
         break;
       case "ArrowLeft":
         setSwitchStatus(true);
+        handleChange(true);
         break;
       default:
         console.error(`${event.key} is not defined`);
@@ -121,13 +122,11 @@ export default function InputCheckboxSwitch({
         checked={checked}
         onChange={(event) => {
           handleChange(event.target.checked);
+          setSwitchStatus(!switchStatus);
         }}
       />
       {leftSideText}
-      <Switch
-        styleProps={styleProps}
-        onClick={() => setSwitchStatus(!switchStatus)}
-      >
+      <Switch styleProps={styleProps}>
         <SwitchButton styleProps={styleProps} animation={switchStatus} />
       </Switch>
       {rightSideText}
