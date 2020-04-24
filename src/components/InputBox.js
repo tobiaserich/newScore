@@ -6,7 +6,9 @@ import calculatePoints from "../assets/calculatePoints";
 
 const Container = styled("div")`
   width: 80%;
-  height: 9%;
+  min-height: 51px;
+  height: ${(height) => height + "px"};
+
   display: flex;
   position: relative;
   align-items: center;
@@ -38,9 +40,16 @@ const InputField = styled("input")`
 `;
 
 const PointsContainer = styled("div")`
-  width: ${({ radius }) => (radius / 100) * 55 + "px"};
-  height: ${({ radius }) => (radius / 100) * 55 + "px"};
-  background-color: yellow;
+  width: ${({ containerRadius }) => (containerRadius / 100) * 55 + "px"};
+  height: ${({ containerRadius }) => (containerRadius / 100) * 55 + "px"};
+  background-color: ${({ result, theme }) =>
+    result === 0
+      ? theme.colors.fontInverted
+      : result === 1
+      ? theme.colors.status3
+      : result === 2
+      ? theme.colors.status2
+      : theme.colors.status1};
   position: absolute;
   right: 1.5%;
   display: flex;
@@ -56,10 +65,11 @@ export default function InputBox({
   points,
   handlePoints,
   position,
+  reset,
 }) {
   const [elementHeight, setElementHeight] = React.useState();
+  const [windowHeight, setWindowHeight] = React.useState();
   const [value, setValue] = React.useState("");
-
   const userWindowWidth = window.innerWidth;
   const fontSize = calculateForWindowWidth(userWindowWidth, "text");
   const InputStyleProperties = {
@@ -81,6 +91,7 @@ export default function InputBox({
             descr={descr}
             name={name}
             checked={value}
+            reset={reset}
             handleChange={setValue}
           />
         );
@@ -92,6 +103,8 @@ export default function InputBox({
             maxLength="4"
             value={value}
             onChange={(event) => setValue(event.target.value)}
+            pattern="[0-9]*"
+            inputMode="numeric"
           />
         );
       default:
@@ -101,14 +114,10 @@ export default function InputBox({
             styleProps={InputStyleProperties}
             maxLength="3"
             value={value}
+            inputMode="numeric"
             onChange={(event) => setValue(event.target.value)}
           />
         );
-    }
-  }
-  function handleRefElementHeight(event) {
-    if (event) {
-      setElementHeight(parseInt(event.offsetHeight));
     }
   }
 
@@ -118,13 +127,26 @@ export default function InputBox({
     oldPoints[position].points = newPoints;
     handlePoints(oldPoints);
   }, [value]);
+
+  React.useEffect(() => {
+    setElementHeight((window.screen.height / 100) * 9);
+  }, []);
+
+  React.useEffect(() => {
+    setValue("");
+  }, [reset]);
+
   const inputField = pickInputType(name);
   return (
     <label>
-      <Container ref={(event) => handleRefElementHeight(event)}>
+      <Container height={elementHeight}>
         <Description fontSize={fontSize}>{name}</Description>
         {inputField}
-        <PointsContainer radius={elementHeight} fontSize={fontSize}>
+        <PointsContainer
+          containerRadius={elementHeight}
+          result={points[position].points}
+          fontSize={fontSize}
+        >
           {points[position].points}
         </PointsContainer>
       </Container>
