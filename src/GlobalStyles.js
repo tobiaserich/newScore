@@ -4,7 +4,7 @@ import { Global, css } from "@emotion/core";
 function GlobalStyles() {
   return (
     <Global
-      styles={(theme) => css`
+      styles={(theme, props) => css`
         *,
         *:before,
         *:after {
@@ -12,13 +12,13 @@ function GlobalStyles() {
         }
         body {
           margin: 0;
-          height: 100vh;
           width: 100vw;
           font-family: "roboto", "sans-serif";
         }
         #root {
-          margin: auto;
-          height: 100%;
+          margin:auto;
+          min-height:100vh;
+          height:100%;
           max-width: 400px;
           background: linear-gradient(${theme.colors.secondary} 30%,#B9DFD5 100%);
         }
