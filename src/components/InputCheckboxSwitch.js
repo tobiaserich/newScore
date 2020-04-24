@@ -81,8 +81,13 @@ export default function InputCheckboxSwitch({
   descr,
   handleChange,
   checked,
+  reset,
 }) {
   const [switchStatus, setSwitchStatus] = React.useState("none");
+  React.useEffect(() => {
+    setSwitchStatus(true);
+  }, [reset]);
+
   const leftSideText = (
     <section>
       <Details>{descr.left.first}</Details>
@@ -103,11 +108,11 @@ export default function InputCheckboxSwitch({
         break;
       case "ArrowRight":
         setSwitchStatus(false);
-        handleChange(false);
+        handleChange(true);
         break;
       case "ArrowLeft":
         setSwitchStatus(true);
-        handleChange(true);
+        handleChange(false);
         break;
       default:
         console.error(`${event.key} is not defined`);
