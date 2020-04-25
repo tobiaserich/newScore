@@ -4,6 +4,8 @@ const theme = {
     secondary: "#51AE97",
     action: "#FCF5E3",
     font: "#535050",
+    fontInverted: "#f5f5f5",
+    fontWithTransparency: "#33535050",
     status1: "#FF6666",
     status2: "#EDBE5E",
     status3: "#FFE666",

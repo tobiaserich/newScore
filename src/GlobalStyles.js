@@ -12,14 +12,14 @@ function GlobalStyles() {
         }
         body {
           margin: 0;
-          height: 100vh;
           width: 100vw;
           font-family: "roboto", "sans-serif";
         }
         #root {
-          margin: auto;
-          height: 100%;
-          max-width: 400px;
+          margin:auto;
+          min-height:100vh;
+          height:100%;
+          max-width: 500px;
           background: linear-gradient(${theme.colors.secondary} 30%,#B9DFD5 100%);
         }
       }
