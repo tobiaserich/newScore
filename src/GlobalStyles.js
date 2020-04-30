@@ -15,6 +15,7 @@ function GlobalStyles() {
           font-family: "roboto", "sans-serif";
         }
         #root {
+          position:relative;
           margin:auto;
           min-height:100vh;
           height:100%;

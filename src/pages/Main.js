@@ -4,7 +4,7 @@ import InputBox from "../components/InputBox";
 import { Button, InfoButton } from "../components/Button";
 import Modal from "../components/Modal";
 import Result from "../components/Result";
-import { mqh } from "../assets/mediquery";
+import { mqh, mqw } from "../assets/mediquery";
 const Header = styled("div")`
   height: 10px;
 
@@ -14,8 +14,12 @@ const Header = styled("div")`
 `;
 
 const Footer = styled("footer")`
+  height: 35px;
   position: absolute;
   bottom: 0;
+  ${mqw("small")} {
+    height: 45px;
+  }
 `;
 
 export default function Main() {
