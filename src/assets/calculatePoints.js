@@ -1,7 +1,6 @@
 export default function calculatePoints(name, rawValue) {
   const value =
     typeof rawValue === "string" ? rawValue.replace(/,/i, ".") : rawValue;
-  console.log(value);
   switch (name) {
     default:
       return 0;
