@@ -12,10 +12,10 @@ function GlobalStyles() {
         }
         body {
           margin: 0;
-          width: 100vw;
           font-family: "roboto", "sans-serif";
         }
         #root {
+          position:relative;
           margin:auto;
           min-height:100vh;
           height:100%;
