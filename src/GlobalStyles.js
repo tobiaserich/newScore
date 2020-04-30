@@ -12,7 +12,6 @@ function GlobalStyles() {
         }
         body {
           margin: 0;
-          width: 100vw;
           font-family: "roboto", "sans-serif";
         }
         #root {
