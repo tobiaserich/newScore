@@ -116,6 +116,7 @@ export default function InputBox({
         return (
           <InputCheckboxSwitch
             onKeyup={onKeyUp}
+            onClick={() => onKeyUp("Mouse", position)}
             focus={focus}
             descr={descr}
             name={name}

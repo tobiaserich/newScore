@@ -100,6 +100,7 @@ export default function InputCheckboxSwitch({
   reset,
   focus,
   onKeyup,
+  onClick,
 }) {
   const [switchStatus, setSwitchStatus] = React.useState("none");
   const formFocus = React.useRef(null);
@@ -139,11 +140,13 @@ export default function InputCheckboxSwitch({
         setSwitchStatus(true);
         handleChange(false);
         break;
+      default:
+        onKeyup(event);
     }
   }
 
   return (
-    <SwitchContainer name={name}>
+    <SwitchContainer name={name} onClick={() => onClick()}>
       <HiddenCheckbox
         ref={formFocus}
         type="checkbox"
