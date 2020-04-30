@@ -1,17 +1,26 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { mqw } from "../assets/mediquery";
 
 const SwitchContainer = styled("div")`
-  width: 80%;
-  position: absolute;
+  width: 80px;
   display: flex;
   align-items: center;
-  left: ${({ styleProps, name }) =>
-    name === "Vigilanz"
-      ? styleProps.position - 6 + "%"
-      : parseInt(styleProps.position) + 2 + "%"};
-  font-size: ${({ styleProps }) => styleProps.fontSize};
-  color: white;
+  font-size: 0.6rem;
+  margin-right: ${({ name }) => (name === "Vigilanz" ? "50px" : "30px")};
+  margin-left: ${({ name }) => (name === "Vigilanz" ? "-20px" : "")};
+  color: black;
+
+  ${mqw("small")} {
+    width: 100px;
+    font-size: 0.7rem;
+    margin-right: ${({ name }) => (name === "Vigilanz" ? "30px" : "5px")};
+    margin-left: ${({ name }) => (name === "Vigilanz" ? "-40px" : "-17px")};
+  }
+  ${mqw("medium")} {
+  }
+  ${mqw("large")} {
+  }
 `;
 
 const HiddenCheckbox = styled("input")`
@@ -21,11 +30,10 @@ const HiddenCheckbox = styled("input")`
 `;
 
 const Switch = styled("div")`
-  position: relative;
   display: flex;
   align-items: center;
   height: 10px;
-  width: 30px;
+  min-width: 30px;
   margin-left: 4px;
   margin-right: 4px;
   background-color: white;
@@ -34,13 +42,12 @@ const Switch = styled("div")`
 `;
 
 const SwitchButton = styled("div")`
-  width: ${({ styleProps }) => styleProps.buttonRadius};
-  height: ${({ styleProps }) => styleProps.buttonRadius};
+  width: 15px;
+  height: 15px;
   padding: 0;
   margin: 0;
   position: relative;
-  left: 0;
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.action};
   box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.4),
     inset -2px -2px 4px rgba(0, 0, 0, 0.4);
   border-radius: 50%;
@@ -52,17 +59,27 @@ const SwitchButton = styled("div")`
       ? "switch-back 0.1s linear normal forwards"
       : "switch 0.1s linear normal forwards"};
 
+  ${mqw("small")} {
+    height: 17px;
+    width: 17px;
+    font-size: 1.5rem;
+  }
+  ${mqw("medium")} {
+  }
+  ${mqw("large")} {
+  }
+
   @keyframes switch {
     0% {
       left: 0;
     }
     100% {
-      left: calc(100% - ${({ styleProps }) => styleProps.buttonRadius});
+      left: calc(100% - 15px);
     }
   }
   @keyframes switch-back {
     0% {
-      left: calc(100% - ${({ styleProps }) => styleProps.buttonRadius});
+      left: calc(100% - 15px);
     }
     100% {
       left: 0;
@@ -76,18 +93,26 @@ const Details = styled("p")`
 `;
 
 export default function InputCheckboxSwitch({
-  styleProps,
   name,
   descr,
   handleChange,
   checked,
   reset,
+  focus,
+  onKeyup,
 }) {
   const [switchStatus, setSwitchStatus] = React.useState("none");
+  const formFocus = React.useRef(null);
+
   React.useEffect(() => {
     setSwitchStatus(true);
   }, [reset]);
 
+  React.useEffect(() => {
+    if (focus === true) {
+      formFocus.current.focus();
+    }
+  }, [focus]);
   const leftSideText = (
     <section>
       <Details>{descr.left.first}</Details>
@@ -114,16 +139,17 @@ export default function InputCheckboxSwitch({
         setSwitchStatus(true);
         handleChange(false);
         break;
-      default:
-        console.error(`${event.key} is not defined`);
     }
   }
 
   return (
-    <SwitchContainer styleProps={styleProps} name={name}>
+    <SwitchContainer name={name}>
       <HiddenCheckbox
+        ref={formFocus}
         type="checkbox"
-        onKeyUp={(event) => handleKeyPress(event)}
+        onKeyUp={(event) => {
+          handleKeyPress(event);
+        }}
         checked={checked}
         onChange={(event) => {
           handleChange(event.target.checked);
@@ -131,8 +157,8 @@ export default function InputCheckboxSwitch({
         }}
       />
       {leftSideText}
-      <Switch styleProps={styleProps}>
-        <SwitchButton styleProps={styleProps} animation={switchStatus} />
+      <Switch>
+        <SwitchButton animation={switchStatus} />
       </Switch>
       {rightSideText}
     </SwitchContainer>
