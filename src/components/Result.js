@@ -2,11 +2,13 @@ import styled from "@emotion/styled";
 import React from "react";
 import { mqw } from "../assets/mediquery";
 
+
 const ResultContainer = styled("div")`
   margin-top: 10px;
   width: 100%;
   display: flex;
   justify-content: center;
+
   font-size: 2rem;
 
   ${mqw("small")} {
@@ -17,6 +19,7 @@ const ResultContainer = styled("div")`
   }
   ${mqw("large")} {
   }
+
 `;
 
 export default function Result({ points }) {

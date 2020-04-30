@@ -26,6 +26,7 @@ export default function Main() {
   const [resetValue, setResetValue] = React.useState(false);
   const [infoActive, setInfoActive] = React.useState(false);
   const [focus, setFocus] = React.useState(0);
+
   const [points, setPoints] = React.useState([
     { name: "AF", points: 0 },
     { name: "SPO2", points: 0 },
@@ -83,6 +84,7 @@ export default function Main() {
         })}
       </form>
       <Button onClick={() => setResetValue(!resetValue)}>reset all</Button>
+
       <Result points={points} />
       <Footer>
         <InfoButton onClick={() => setInfoActive(true)}>?</InfoButton>

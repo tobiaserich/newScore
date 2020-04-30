@@ -109,11 +109,13 @@ export default function InputCheckboxSwitch({
     setSwitchStatus(true);
   }, [reset]);
 
+
   React.useEffect(() => {
     if (focus === true) {
       formFocus.current.focus();
     }
   }, [focus]);
+
   const leftSideText = (
     <section>
       <Details>{descr.left.first}</Details>
@@ -146,7 +148,7 @@ export default function InputCheckboxSwitch({
   }
 
   return (
-    <SwitchContainer name={name} onClick={() => onClick()}>
+   <SwitchContainer name={name} onClick={() => onClick()}>
       <HiddenCheckbox
         ref={formFocus}
         type="checkbox"
