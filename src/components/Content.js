@@ -17,7 +17,6 @@ const ContentBox = styled("div")`
     }
   }
 `;
-
 const TabContainer = styled("nav")`
   width: 100%;
   display: flex;
@@ -43,11 +42,33 @@ const ContentText = styled("article")`
   height: calc(100% - 40px);
   border-radius: 0px 0px 8px 8px;
   overflow: auto;
+  padding-left: 2px;
+  padding-right: 3px;
   scrollbar-color: ${({ theme }) => {
     return `${theme.colors.secondaryAction} ${theme.colors.primary} `;
   }};
 `;
 
+const Heading = styled("h2")`
+  margin: 0;
+  padding: 0;
+`;
+const SubHeading = styled("h6")`
+  margin: 0;
+  padding: 0;
+`;
+
+const Table = styled("table")`
+  border-collapse: collapse;
+`;
+
+const TableDetail = styled("td")`
+  padding: 10px;
+`;
+
+const TableRow = styled("tr")`
+  background-color: ${({ bgColor }) => bgColor};
+`;
 export default function Content() {
   const [animationEnd, setAnimationEnd] = React.useState(false);
   const [activeButton, setActiveButton] = React.useState("impressum");
@@ -129,7 +150,73 @@ export default function Content() {
         </p>
       </>
     ) : (
-      ""
+      <>
+        <Heading>NEW Score Calculator</Heading>
+        <SubHeading>(National Early Warning Score)</SubHeading>
+        <p>
+          Diese Web App soll medizinischem Fachpersonal dabei helfen, die
+          Dringlichkeit und Intensität der medizinischen Behandlung stationärer
+          Patienten zu bewerten.
+        </p>
+        <p>
+          Sie ist als ergänzendes Hilfsmittel und nicht als Ersatz zur
+          Einschätzung des klinischen Personals zu sehen. Anhand der errechneten
+          Punktzahl lassen sich die weiteren Maßnahmen ableiten.
+        </p>
+
+        <Table>
+          <TableRow>
+            <th>Punkte</th>
+            <th>weiterer Messintervall</th>
+            <th>Maßnahmen</th>
+          </TableRow>
+
+          <TableRow>
+            <TableDetail>0</TableDetail>
+            <TableDetail> alle 12 Std</TableDetail>
+            <TableDetail>nicht erforderlich</TableDetail>
+          </TableRow>
+
+          <TableRow bgColor="#D3D3D3">
+            <TableDetail>1-2</TableDetail>
+            <TableDetail>4-8 stdl.</TableDetail>
+            <TableDetail>
+              weitere Überwachung durch examinierte Pflegekraft empfohlen
+            </TableDetail>
+          </TableRow>
+
+          <TableRow bgColor="#ddff9e">
+            <TableDetail>3-4</TableDetail>
+            <TableDetail>1-4 stdl</TableDetail>
+            <TableDetail>Information zuständiger Assistenzarzt</TableDetail>
+          </TableRow>
+
+          <TableRow bgColor="#ffd940">
+            <TableDetail>5-6</TableDetail>
+            <TableDetail> 1 stdl.</TableDetail>
+            <TableDetail>
+              Information zuständiger Facharzt, zeitnahe visitierung empfohlen
+            </TableDetail>
+          </TableRow>
+
+          <TableRow bgColor="#e85217">
+            <TableDetail>&gt;7</TableDetail>
+            <TableDetail>kontinuierlich</TableDetail>
+            <TableDetail>
+              Information Facharzt für Intensivmedizin, Bewertung der
+              Intensivpflichtigkeit empfohlen
+            </TableDetail>
+          </TableRow>
+          <p></p>
+          <TableRow bgColor="#e85217">
+            <TableDetail>3 in einem Parameter</TableDetail>
+            <TableDetail> 1stdl.</TableDetail>
+            <TableDetail>
+              Information an den zuständigen Assistenzarzt
+            </TableDetail>
+          </TableRow>
+        </Table>
+      </>
     );
   return (
     <ContentBox onAnimationEnd={() => setAnimationEnd(true)}>
