@@ -38,4 +38,15 @@ const InfoButton = styled("button")`
   }
 `;
 
-export { Button, InfoButton };
+const ExitButton = styled("button")`
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  border-radius: 50%;
+  border: none;
+  font-weight: 600;
+  background-color: ${({ theme }) => theme.colors.secondaryAction};
+`;
+export { Button, InfoButton, ExitButton };
