@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { mqw } from "../assets/mediquery";
 
-
 const Button = styled("button")`
   display: flex;
   justify-content: center;
@@ -19,6 +18,8 @@ const Button = styled("button")`
 const InfoButton = styled("button")`
   width: 35px;
   height: 35px;
+  position: relative;
+  z-index: 0;
   display: flex;
   justify-content: center;
   align-items: center;

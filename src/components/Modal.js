@@ -9,6 +9,7 @@ const FadeOutBackground = styled("div")`
   max-width: 500px;
   position: absolute;
   bottom: 0;
+  z-index: 10;
   animation: popUp 0.2s both;
   @keyframes popUp {
     0% {
