@@ -1,10 +1,15 @@
 import React from "react";
+import styled from "@emotion/styled";
 import InputCheckboxSwitch from "./InputCheckboxSwitch";
 import calculatePoints from "../assets/calculatePoints";
 import { InputContainer, PointsContainer } from "./Container";
 import Description from "./Description";
 import { InputField } from "./Inputs";
 
+const Label = styled("label")`
+  :focus {
+  }
+`;
 export default function InputBox({
   name,
   descr,
@@ -35,6 +40,7 @@ export default function InputBox({
   React.useEffect(() => {
     if (focus && formFocus.current) {
       formFocus.current.focus();
+      formFocus.current.select();
     }
   }, [focus]);
 
@@ -67,7 +73,7 @@ export default function InputBox({
     );
 
   return (
-    <label>
+    <Label>
       <InputContainer>
         <Description>{name}</Description>
         {inputField}
@@ -75,6 +81,6 @@ export default function InputBox({
           {fields[position].points}
         </PointsContainer>
       </InputContainer>
-    </label>
+    </Label>
   );
 }
