@@ -43,22 +43,21 @@ export default function Main() {
         setFocus(focus - 1);
         console.log(focus);
       } else if (event.key === "ArrowDown" && focus < 6) {
+
         setFocus(focus + 1);
       } else if (event.key === "Tab" && focus >= 0 && focus < 6) {
         setFocus(focus + 1);
       } else if (event.key === "Enter" && focus >= 0 && focus < 6) {
-
         setFocus(focus + 1);
       }
     }
   }
 
-
   React.useEffect(() => {
     clearTimeout(resetFocus);
     resetFocus = setTimeout(() => setFocus(0), 300);
   }, [reset]);
-
+  
   return (
     <>
       <Header />
@@ -93,7 +92,6 @@ export default function Main() {
         })}
       </form>
       <Button onClick={() => setReset(!reset)}>reset all</Button>
-
 
       <Result points={formFields} />
       {infoModal}

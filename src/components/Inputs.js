@@ -14,6 +14,7 @@ const InputField = styled("input")`
     box-shadow: 0 0 5px 1px #4ca48e;
   }
 
+
   ${mqw("small")} {
     width: 80px;
     height: 32px;
