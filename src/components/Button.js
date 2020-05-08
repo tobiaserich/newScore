@@ -13,6 +13,13 @@ const Button = styled("button")`
   border: none;
   border-radius: 20px;
   padding: 3px;
+  :focus {
+    box-shadow: 0 0 5px 1px #4ca48e;
+    outline: none;
+    ::-moz-focus-inner {
+      border: 0;
+    }
+  }
 `;
 
 const InfoButton = styled("button")`
