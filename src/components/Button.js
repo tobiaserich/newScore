@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { mqw } from "../assets/mediquery";
 
-
 const Button = styled("button")`
   display: flex;
   justify-content: center;
@@ -14,11 +13,20 @@ const Button = styled("button")`
   border: none;
   border-radius: 20px;
   padding: 3px;
+  :focus {
+    box-shadow: 0 0 5px 1px #4ca48e;
+    outline: none;
+    ::-moz-focus-inner {
+      border: 0;
+    }
+  }
 `;
 
 const InfoButton = styled("button")`
   width: 35px;
   height: 35px;
+  position: relative;
+  z-index: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,4 +45,15 @@ const InfoButton = styled("button")`
   }
 `;
 
-export { Button, InfoButton };
+const ExitButton = styled("button")`
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  border-radius: 50%;
+  border: none;
+  font-weight: 600;
+  background-color: ${({ theme }) => theme.colors.secondaryAction};
+`;
+export { Button, InfoButton, ExitButton };

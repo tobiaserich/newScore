@@ -10,6 +10,9 @@ const InputField = styled("input")`
   border-radius: 2px;
   text-align: center;
   font-size: 1.3rem;
+  :focus {
+    box-shadow: 0 0 5px 1px #4ca48e;
+  }
 
   ${mqw("small")} {
     width: 80px;

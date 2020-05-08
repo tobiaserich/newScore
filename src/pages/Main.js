@@ -34,6 +34,7 @@ export default function Main() {
   ]);
   const infoModal = infoActive ? <Modal onClick={setInfoActive} /> : "";
 
+  let resetFocus;
   function handleInputPress(event, position) {
     if (event === "Mouse") {
       setFocus(position);
@@ -43,9 +44,20 @@ export default function Main() {
         console.log(focus);
       } else if (event.key === "ArrowDown" && focus < 6) {
         setFocus(focus + 1);
+      } else if (event.key === "Tab" && focus >= 0 && focus < 6) {
+        setFocus(focus + 1);
+      } else if (event.key === "Enter" && focus >= 0 && focus < 6) {
+
+        setFocus(focus + 1);
       }
     }
   }
+
+
+  React.useEffect(() => {
+    clearTimeout(resetFocus);
+    resetFocus = setTimeout(() => setFocus(0), 300);
+  }, [reset]);
 
   return (
     <>
@@ -81,6 +93,7 @@ export default function Main() {
         })}
       </form>
       <Button onClick={() => setReset(!reset)}>reset all</Button>
+
 
       <Result points={formFields} />
       {infoModal}

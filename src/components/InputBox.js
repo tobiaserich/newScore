@@ -35,6 +35,7 @@ export default function InputBox({
   React.useEffect(() => {
     if (focus && formFocus.current) {
       formFocus.current.focus();
+      formFocus.current.select();
     }
   }, [focus]);
 

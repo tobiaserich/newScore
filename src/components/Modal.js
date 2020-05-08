@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import { mqw } from "../assets/mediquery";
 import Content from "./Content";
+import { ExitButton } from "./Button";
 
 const FadeOutBackground = styled("div")`
   height: 100%;
@@ -9,6 +10,7 @@ const FadeOutBackground = styled("div")`
   max-width: 500px;
   position: absolute;
   bottom: 0;
+  z-index: 10;
   animation: popUp 0.2s both;
   @keyframes popUp {
     0% {
@@ -30,7 +32,7 @@ const ContentContainer = styled("div")`
   bottom: 0;
   background-color: ${({ theme }) => theme.colors.secondaryAction};
   border-radius: 0px 25px 0px 0px;
-  animation: floatToCenter 1s both;
+  animation: floatToCenter 1.3s both;
   @keyframes floatToCenter {
     0% {
       bottom: 0;
@@ -89,7 +91,7 @@ const ContentContainer = styled("div")`
         height: 45px;
         width: 45px;
         border-radius: 50%;
-        margin-left: 45%;
+        margin-left: 45.5%;
         margin-bottom: 100%;
       }
       80% {
@@ -114,7 +116,14 @@ const ContentContainer = styled("div")`
 
 export default function Modal({ onClick }) {
   const [showContent, setShowContent] = React.useState(false);
-  const content = showContent ? <Content /> : "";
+  const content = showContent ? (
+    <>
+      <ExitButton onClick={(event) => handleClick(event)}>X</ExitButton>
+      <Content />
+    </>
+  ) : (
+    ""
+  );
 
   function handleClick(event) {
     if (event.target === event.currentTarget) {
