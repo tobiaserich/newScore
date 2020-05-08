@@ -54,7 +54,7 @@ export default function Main() {
 
   React.useEffect(() => {
     clearTimeout(resetFocus);
-    resetFocus = setTimeout(() => setFocus(0), 100);
+    resetFocus = setTimeout(() => setFocus(0), 300);
   }, [reset]);
   return (
     <>
