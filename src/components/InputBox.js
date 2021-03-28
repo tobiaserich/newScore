@@ -10,13 +10,6 @@ export default function InputBox({ name, descr, position, focus }) {
   const [value, setValue] = React.useState("");
   const formFocus = React.useRef(null);
   const context = React.useContext(PointsContext);
-  ///calculate points for this inputBox
-
-  React.useEffect(() => {
-    const newPoints = calculatePoints(name, value);
-  }, [value]);
-
-  /// handle pressed reset button
 
   /// toggle focus
   React.useEffect(() => {
@@ -25,8 +18,6 @@ export default function InputBox({ name, descr, position, focus }) {
       formFocus.current.select();
     }
   }, [focus]);
-
-  const maxLength = name === "Temp" ? "4" : "3";
 
   /// choose right jsx for each input type
   const inputField =

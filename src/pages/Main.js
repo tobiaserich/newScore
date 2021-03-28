@@ -35,7 +35,6 @@ export default function Main() {
   const [focus, setFocus] = React.useState(0);
   const [formFieldValues, setFormFieldValues] = React.useState(initialValues);
 
-  let resetFocus;
   const infoModal = infoActive ? <Modal onClick={setInfoActive} /> : "";
 
   function handleFocus(event, position) {
