@@ -33,7 +33,7 @@ export default function calculatePoints(name, rawValue) {
       }
       break;
     case "O2 Gabe?":
-      if (value === true) {
+      if (value === false) {
         return 2;
       } else {
         return 0;
@@ -71,7 +71,7 @@ export default function calculatePoints(name, rawValue) {
       }
       break;
     case "Vigilanz":
-      if (value === true) {
+      if (value === false) {
         return 3;
       } else {
         return 0;
