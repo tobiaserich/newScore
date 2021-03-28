@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { mqw } from "../assets/mediquery";
-import Content from "./Content";
 import { ExitButton } from "./Button";
+const Content = React.lazy(() => import("./Content"));
 
 const FadeOutBackground = styled("div")`
   height: 100%;

@@ -16,18 +16,13 @@ const Switch = styled("div")`
 const SwitchButton = styled("div")`
   width: 15px;
   height: 15px;
-  padding: 0;
-  margin: 0;
-  position: relative;
   background-color: ${({ theme }) => theme.colors.action};
   box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.4),
     inset -2px -2px 4px rgba(0, 0, 0, 0.4);
   border-radius: 50%;
   border: none;
   animation: ${({ animation }) =>
-    animation === "none"
-      ? ""
-      : animation
+    animation
       ? "switch-back 0.1s linear normal forwards"
       : "switch 0.1s linear normal forwards"};
 
@@ -36,25 +31,21 @@ const SwitchButton = styled("div")`
     width: 17px;
     font-size: 1.5rem;
   }
-  ${mqw("medium")} {
-  }
-  ${mqw("large")} {
-  }
 
   @keyframes switch {
     0% {
-      left: 0;
+      transform: translateX(0%);
     }
     100% {
-      left: calc(100% - 15px);
+      transform: translateX(90%);
     }
   }
   @keyframes switch-back {
     0% {
-      left: calc(100% - 15px);
+      transform: translateX(calc(90%));
     }
     100% {
-      left: 0;
+      transform: translateX(calc(0%));
     }
   }
 `;

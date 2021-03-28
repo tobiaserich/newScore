@@ -4,32 +4,19 @@ import calculatePoints from "../assets/calculatePoints";
 import { InputContainer, PointsContainer } from "./Container";
 import Description from "./Description";
 import { InputField } from "./Inputs";
+import PointsContext from "../context/PointsContext";
 
-export default function InputBox({
-  name,
-  descr,
-  fields,
-  handlePoints,
-  position,
-  reset,
-  focus,
-  onInput,
-}) {
+export default function InputBox({ name, descr, position, focus }) {
   const [value, setValue] = React.useState("");
   const formFocus = React.useRef(null);
-
+  const context = React.useContext(PointsContext);
   ///calculate points for this inputBox
+
   React.useEffect(() => {
     const newPoints = calculatePoints(name, value);
-    let oldPoints = [...fields];
-    oldPoints[position].points = newPoints;
-    handlePoints(oldPoints);
   }, [value]);
 
   /// handle pressed reset button
-  React.useEffect(() => {
-    setValue("");
-  }, [reset]);
 
   /// toggle focus
   React.useEffect(() => {
@@ -45,25 +32,21 @@ export default function InputBox({
   const inputField =
     name === "Vigilanz" || name === "O2 Gabe?" ? (
       <InputCheckboxSwitch
-        onInput={onInput}
-        onClick={() => onInput("Mouse", position)}
+        changeFocus={(event) => context.handleFocus(event, position)}
         focus={focus}
         descr={descr}
         name={name}
-        checked={value}
-        reset={reset}
-        handleChange={setValue}
       />
     ) : (
       <InputField
-        onKeyUp={(event) => onInput(event)}
-        onClick={() => onInput("Mouse", position)}
+        onKeyUp={(event) => context.handleFocus(event)}
+        onClick={() => context.handleFocus("Mouse", position)}
+        onChange={(event) => context.changeFieldValue(name, event.target.value)}
         ref={formFocus}
+        maxLength={name === "Temp" ? "4" : "3"}
+        value={context[name][0]}
         type="text"
-        maxLength={maxLength}
-        value={value}
         inputMode="numeric"
-        onChange={(event) => setValue(event.target.value)}
       />
     );
 
@@ -72,8 +55,8 @@ export default function InputBox({
       <InputContainer>
         <Description>{name}</Description>
         {inputField}
-        <PointsContainer result={fields[position].points}>
-          {fields[position].points}
+        <PointsContainer result={context[name][1]}>
+          {context[name][1]}
         </PointsContainer>
       </InputContainer>
     </label>
