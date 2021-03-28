@@ -1,6 +1,5 @@
 import React from "react";
 import InputCheckboxSwitch from "./InputCheckboxSwitch";
-import calculatePoints from "../assets/calculatePoints";
 import { InputContainer, PointsContainer } from "./Container";
 import Description from "./Description";
 import { InputField } from "./Inputs";
