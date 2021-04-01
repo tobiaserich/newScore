@@ -81,9 +81,9 @@ export default function Content() {
         <p>
           Tobias Erich
           <br />
-          T&uuml;binger Str.20/4
+          Behringstr.150
           <br />
-          72336 Balingen
+          22765 Hamburg
         </p>
         <h2>Kontakt</h2>
         <p>

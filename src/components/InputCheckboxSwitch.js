@@ -3,24 +3,17 @@ import { SwitchContainer } from "./Container";
 import { HiddenCheckbox } from "./Inputs";
 import { Switch, SwitchButton } from "./Switch";
 import Details from "./Details";
+import PointsContext from "../context/PointsContext";
 
 export default function InputCheckboxSwitch({
   name,
   descr,
-  handleChange,
-  checked,
-  reset,
   focus,
-  onInput,
-  onClick,
+  changeFocus,
 }) {
   const [switchStatus, setSwitchStatus] = React.useState("none");
   const formFocus = React.useRef(null);
-
-  /// handle pressed resetButton
-  React.useEffect(() => {
-    setSwitchStatus(true);
-  }, [reset]);
+  const context = React.useContext(PointsContext);
 
   /// toggle focus
   React.useEffect(() => {
@@ -48,35 +41,30 @@ export default function InputCheckboxSwitch({
       case "":
         break;
       case "ArrowRight":
-        setSwitchStatus(false);
-        handleChange(true);
+        context.changeFieldValue(name, false);
         break;
       case "ArrowLeft":
-        setSwitchStatus(true);
-        handleChange(false);
+        context.changeFieldValue(name, true);
         break;
       default:
-        onInput(event);
+        changeFocus(event);
     }
   }
 
   return (
-    <SwitchContainer name={name} onClick={() => onClick()}>
+    <SwitchContainer name={name} onClick={() => changeFocus("Mouse")}>
       <HiddenCheckbox
         ref={formFocus}
         type="checkbox"
-        onKeyUp={(event) => {
-          handleKeyPress(event);
-        }}
-        checked={checked}
+        onKeyUp={(event) => handleKeyPress(event)}
+        checked={context[name][0]}
         onChange={(event) => {
-          handleChange(event.target.checked);
-          setSwitchStatus(!switchStatus);
+          context.changeFieldValue(name, event.target.checked);
         }}
       />
       {leftSideText}
       <Switch>
-        <SwitchButton animation={switchStatus} />
+        <SwitchButton animation={context[name][0]} />
       </Switch>
       {rightSideText}
     </SwitchContainer>
