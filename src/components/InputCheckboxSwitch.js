@@ -11,7 +11,6 @@ export default function InputCheckboxSwitch({
   focus,
   changeFocus,
 }) {
-  const [switchStatus, setSwitchStatus] = React.useState("none");
   const formFocus = React.useRef(null);
   const context = React.useContext(PointsContext);
 

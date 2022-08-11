@@ -3,16 +3,16 @@ import { mqw } from "../assets/mediquery";
 
 const Button = styled("button")`
   display: flex;
-  justify-content: center;
   width: 39%;
   height: 4%;
-  font-size: 1.7rem;
+  justify-content: center;
   margin: auto;
   margin-top: 15px;
-  background-color: ${({ theme }) => theme.colors.secondaryAction};
+  padding: 3px;
   border: none;
   border-radius: 20px;
-  padding: 3px;
+  background-color: ${({ theme }) => theme.colors.secondaryAction};
+  font-size: 1.7rem;
   :focus {
     box-shadow: 0 0 5px 1px #4ca48e;
     outline: none;
@@ -23,17 +23,17 @@ const Button = styled("button")`
 `;
 
 const InfoButton = styled("button")`
+  display: flex;
   width: 35px;
   height: 35px;
-  position: relative;
-  z-index: 0;
-  display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.secondaryAction};
-  border: none;
+  position: relative;
+  z-index: 0;
   padding-left: 0px;
+  border: none;
   border-radius: 0px 25px 0px 0px;
+  background-color: ${({ theme }) => theme.colors.secondaryAction};
   font-weight: 600;
   font-size: 1.1rem;
   ${mqw("small")} {
@@ -53,7 +53,7 @@ const ExitButton = styled("button")`
   right: -10px;
   border-radius: 50%;
   border: none;
-  font-weight: 600;
   background-color: ${({ theme }) => theme.colors.secondaryAction};
+  font-weight: 600;
 `;
 export { Button, InfoButton, ExitButton };

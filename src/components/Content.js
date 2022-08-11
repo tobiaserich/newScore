@@ -4,10 +4,10 @@ import React from "react";
 const ContentBox = styled("div")`
   height: 100%;
   width: 100%;
-  background-color: white;
-  border-radius: 15px;
-  animation: rollDown 1s both;
   border: 8px solid ${({ theme }) => theme.colors.secondaryAction};
+  border-radius: 15px;
+  background-color: white;
+  animation: rollDown 1s both;
   @keyframes rollDown {
     0% {
       height: 0%;
@@ -18,32 +18,31 @@ const ContentBox = styled("div")`
   }
 `;
 const TabContainer = styled("nav")`
-  width: 100%;
   display: flex;
-  justify-content: space-around;
+  width: 100%;
   height: 40px;
-  background-color: ${({ theme }) => theme.colors.secondaryAction};
+  justify-content: space-around;
   border-radius: 10px;
+  background-color: ${({ theme }) => theme.colors.secondaryAction};
 `;
 
 const TabButton = styled("button")`
   width: 100%;
-  background-color: ${({ theme, name, active }) =>
-    name === active ? theme.colors.primary : theme.colors.secondaryAction};
   margin: 0;
   border: none;
-
   border-radius: ${({ name }) =>
     name === "impressum" ? "0px 7px 0px 0px" : "7px 0px 0px 0px"};
+  background-color: ${({ theme, name, active }) =>
+    name === active ? theme.colors.primary : theme.colors.secondaryAction};
 `;
 
 const ContentText = styled("article")`
   width: 100%;
   height: calc(100% - 40px);
-  border-radius: 0px 0px 8px 8px;
   overflow: auto;
   padding-left: 2px;
   padding-right: 3px;
+  border-radius: 0px 0px 8px 8px;
   scrollbar-color: ${({ theme }) => {
     return `${theme.colors.secondaryAction} ${theme.colors.primary} `;
   }};

@@ -18,6 +18,8 @@ export default function InputBox({ name, descr, position, focus }) {
     }
   }, [focus]);
 
+  const color = ["fontInverted", "status3", "status2", "status1"];
+
   /// choose right jsx for each input type
   const inputField =
     name === "Vigilanz" || name === "O2 Gabe?" ? (
@@ -45,7 +47,7 @@ export default function InputBox({ name, descr, position, focus }) {
       <InputContainer>
         <Description>{name}</Description>
         {inputField}
-        <PointsContainer result={context[name][1]}>
+        <PointsContainer color={color[context[name][1]]}>
           {context[name][1]}
         </PointsContainer>
       </InputContainer>
